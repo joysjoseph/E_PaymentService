@@ -1,0 +1,31 @@
+<object class="org.apache.commons.dbcp.PoolableConnectionFactory" xmlns="http://apache.org/xml/xmlns/jakarta/commons/jocl">
+   <!-- the first argument is the ConnectionFactory -->
+   <object class="org.apache.commons.dbcp.DriverManagerConnectionFactory">
+      <!--<string value="jdbc:oracle:thin:mesg/mesg@uocdevdb:1521:UOCQA"/>-->
+      <!--<string value="jdbc:oracle:thin:appserver1/appserver1@dbcpnydev50:1521:MSDEV"/>-->
+      <string value="jdbc:sqlserver:webservuser_msazdbt01/web12rJKlm_01@msazdbt01.database.windows.net:1433:PaymentDB"/>
+      <!--<string value="jdbc:sqlserver://msazdbt01.database.windows.net:1433;database=PaymentDB;user=webservuser@msazdbt01;password=web12rJKlm@01;encrypt=true;trustServerCertificate=false;hostNameInCertificate=eastus1-a.control.database.windows.net;loginTimeout=30"/> -->
+      <object class="java.util.Properties" null="true"/>
+   </object>
+   <!-- the next argument is the ObjectPool -->
+   <object class="org.apache.commons.pool.impl.GenericObjectPool">
+      <object class="org.apache.commons.pool.PoolableObjectFactory" null="true"/>
+      <int value="55"/> <!-- max active -->
+      <byte value="2"/> <!-- when exhausted action, 0 = fail, 1 = block, 2 = grow -->
+      <long value="2000"/> <!-- max wait -->
+      <int value="5"/> <!-- max idle -->
+      <boolean value="false"/> <!-- test on borrow -->
+      <boolean value="false"/> <!-- test on return -->
+      <long value="120000"/> <!-- time between eviction runs -->
+      <int value="2"/> <!-- number of connections to test per eviction run -->
+      <long value="60000"/> <!-- min evictable idle time -->
+      <boolean value="false"/> <!-- test while idle -->
+   </object>
+   <!-- the next argument is the KeyedObjectPoolFactory -->
+   <object class="org.apache.commons.pool.impl.StackKeyedObjectPoolFactory">
+      <int value="20"/> <!-- max idle -->
+   </object>
+   <string value="SELECT COUNT(*) FROM DUAL"/> <!-- validation query -->
+   <boolean value="false"/> <!-- default read only -->
+   <boolean value="false"/> <!-- default auto commit -->
+</object>
